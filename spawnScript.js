@@ -1,8 +1,6 @@
-﻿// Variable to store the enemy prefab
+﻿// Public prefabs
 public var enemy : GameObject;
 public var waveCount : int = 3;
-
-// variable to know who fast we should create new enemies
 public var spawnTime : float = 2;
 
 function Start () {
@@ -19,11 +17,8 @@ function addEnemy() {
     // get the renderer component of the spawn object
     var render = GetComponent("Renderer");
 
-    // position of the top edge of the spawn object
-    // It's: (position of the center) minus (half the width)
+    // position of the top & bottom edges of spawn obj
     var y1 = transform.position.y - render.bounds.size.y/2;
-
-    // right edge
     var y2 = transform.position.y + render.bounds.size.y/2;
 
     // randomly pick a point within the spawn object

@@ -1,12 +1,12 @@
 ﻿// A variable taht will contain our bullet prefab
 public var bullet : GameObject;
-
-// Get camera object for viewport dimensions
-//GameObject mainCam = GameObject.Find("Main Camera");
+//private var topLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, planeDistance));
+//private var topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, planeDistance));
+//private var bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, planeDistance));
+//private var bottomRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, planeDistance));
 
 // Function called about 60 times per second
 function Update() {
-    // Get the rigidbody component
     var r2d = GetComponent("Rigidbody2D");
 
     // Edge detection function call
@@ -43,3 +43,11 @@ function IsAtEdge(rigidbody){
         return true;
     return false;
 }
+
+
+// movement of character controls scrolling background
+// character can only go as far as the center verticle, any more forward and the background will scroll
+// unless at the end of the backgroun where the character can move until the edge of the map
+// character backing up to the left edge slowly backs up the background scrolling as well
+// (as to prevent overusing backing up as a means of escaping enemies)
+// http://answers.unity3d.com/questions/600429/stop-movement-at-edge-of-screen-2d-shooter.html
