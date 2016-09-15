@@ -1,5 +1,8 @@
 ﻿// A variable taht will contain our bullet prefab
 public var bullet : GameObject;
+
+private var CEILING_Y : float = 5.0; // to be added to a Game Manager class scritp
+private var FLOOR_Y : float = 5.0;
 //private var topLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, planeDistance));
 //private var topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, planeDistance));
 //private var bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, planeDistance));
@@ -16,13 +19,13 @@ function Update() {
 
     // Move the spaceship when an arrow key is pressed
     if (Input.GetKey("up"))
-        r2d.velocity.y = 10;
+        r2d.velocity.y = 7;
     else if (Input.GetKey("down"))
-        r2d.velocity.y = -10;
+        r2d.velocity.y = -7;
     else if (Input.GetKey("left"))
-        r2d.velocity.x = -10;
+        r2d.velocity.x = -7;
     else if (Input.GetKey("right"))
-        r2d.velocity.x = 10;
+        r2d.velocity.x = 7;
     else
         r2d.velocity = Vector2(0,0);
 
@@ -39,7 +42,7 @@ function Update() {
 // edge detection
 function IsAtEdge(rigidbody){
     // get edges of screen
-    if (rigidbody.position.x >= Screen.width || rigidbody.position.y >= Screen.height)
+    if (rigidbody.position.y >= CEILING_Y || rigidbody.position.y <= FLOOR_Y)
         return true;
     return false;
 }

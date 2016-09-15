@@ -1,5 +1,5 @@
 ﻿// public variable, can be directly edited in inspector
-public var speed : int = 8;
+public var speed : int = 10;
 
 // function called once when the bullet is created
 function Start() {
