@@ -8,13 +8,19 @@ private var FLOOR_Y : float = 5.0;
 //private var bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, planeDistance));
 //private var bottomRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, planeDistance));
 
+private var r2d;
+
+function Start() {
+	r2d = GetComponent("Rigidbody2D");
+}
+
 // Function called about 60 times per second
 function Update() {
-    var r2d = GetComponent("Rigidbody2D");
+    
 
     // Edge detection function call
-    if (IsAtEdge(r2d))
-        r2d.velocity = Vector2(0,0);
+    //if (IsAtEdge(r2d))
+    //    r2d.velocity = Vector2(0,0);
 
 
     // Move the spaceship when an arrow key is pressed
@@ -40,12 +46,14 @@ function Update() {
 }
 
 // edge detection
-function IsAtEdge(rigidbody){
+/*function IsAtEdge(rigidbody){
     // get edges of screen
     if (rigidbody.position.y >= CEILING_Y || rigidbody.position.y <= FLOOR_Y)
         return true;
     return false;
-}
+}*/
+
+
 
 
 // movement of character controls scrolling background
