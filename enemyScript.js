@@ -10,7 +10,7 @@ function Start() {
     r2d.velocity.x = speed;
 
     // make the enemy rotate on itself
-    r2d.angularVelocity = Random.Range(-200, 200);
+    //r2d.angularVelocity = Random.Range(-200, 200);
 }
 
 // Function called when the object goes out of the screen
