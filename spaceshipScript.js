@@ -9,6 +9,7 @@ private var FLOOR_Y : float = 5.0;
 //private var bottomRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, planeDistance));
 
 private var r2d;
+private var isDead
 
 function Start() {
 	r2d = GetComponent("Rigidbody2D");

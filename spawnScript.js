@@ -25,5 +25,5 @@ function addEnemy() {
     var spawnPoint = Vector3(transform.position.x, Random.Range(y1, y2), Z_LOC);
 
     // create an enemy at the spawnPoint position
-    Instantiate(enemy, spawnPoint, Quaternion.identity);
+    Instantiate(enemy, spawnPoint, Quaternion.Euler(Vector3(0, -153, -7)));
 }
