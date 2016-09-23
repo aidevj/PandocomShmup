@@ -1,30 +1,25 @@
-﻿// A variable taht will contain our bullet prefab
-public var bullet : GameObject;
-
-private var CEILING_Y : float = 5.0; // to be added to a Game Manager class scritp
-private var FLOOR_Y : float = 5.0;
-//private var topLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, planeDistance));
-//private var topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, planeDistance));
-//private var bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, planeDistance));
-//private var bottomRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, planeDistance));
+﻿public var bullet : GameObject;
 
 private var r2d;
-private var isDead
+private var HP : int;
 
 function Start() {
 	r2d = GetComponent("Rigidbody2D");
 }
 
-// Function called about 60 times per second
 function Update() {
     
+    // Check if player has died
+    if (isDead){ 
+        death(); 
+    }
 
     // Edge detection function call
     //if (IsAtEdge(r2d))
     //    r2d.velocity = Vector2(0,0);
 
 
-    // Move the spaceship when an arrow key is pressed
+    // Player Movement
     if (Input.GetKey("up"))
         r2d.velocity.y = 7;
     else if (Input.GetKey("down"))
@@ -37,24 +32,22 @@ function Update() {
         r2d.velocity = Vector2(0,0);
 
     // Bullet firing handling
-    // When space bar is pressed
     if (Input.GetKeyDown("space")) {
-        // create a new bullet at "transform.position"
-        // which is the current position of the ship
-        // Quaternion.identity = add the bullet with no rotation
         Instantiate(bullet, transform.position, Quaternion.identity);
     }
 }
 
-// edge detection
-/*function IsAtEdge(rigidbody){
-    // get edges of screen
-    if (rigidbody.position.y >= CEILING_Y || rigidbody.position.y <= FLOOR_Y)
+// checks if player has died
+function isDead(){
+    if (HP <= 0)
         return true;
     return false;
-}*/
+}
 
-
+// death animation function here
+function death(){
+   // to do
+}
 
 
 // movement of character controls scrolling background

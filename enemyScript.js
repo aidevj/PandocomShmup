@@ -1,5 +1,7 @@
 ﻿// Public variable that contains the speed of the enemy
 public var speed : int = -5;
+public var amplitude : float = 1;
+public var frequency : float = .7;
 
 // Fuction called when the enemy is created
 function Start() {
@@ -17,6 +19,11 @@ function Start() {
 function OnBecameInvisible(){
     // Destroy the enemy
     Destroy(gameObject);
+}
+
+// Update Function
+function Update(){ 
+    transform.position += amplitude * (Mathf.Sin(2 * Mathf.PI * frequency * Time.time) - Mathf.Sin(2 * Mathf.PI * frequency*(Time.time - Time.deltaTime))) * transform.up;
 }
 
 // Function called when the enemy collides with another object
