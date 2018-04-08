@@ -1,17 +1,24 @@
-﻿// public variable, can be directly edited in inspector
-public var speed : int = 10;
+﻿private var speed : int = 10;
+private var r2d;
 
-// function called once when the bullet is created
 function Start() {
-    // get rigidbody component
-    var r2d = GetComponent("Rigidbody2D");
-
-    // make the bullet move sideways
+    r2d = GetComponent("Rigidbody2D");
     r2d.velocity.x = speed;
 }
 
-// Function called when the object goes out of the screen
-function OnBecameInvisible() { // this is preset name function in unity(?)
-    // destroy the bullet
+function Update() {
+	transform.position.z = 0;
+}
+	
+
+function OnCollisionEnter2D(col : Collision2D) {
+
+	if (col.gameObject.tag == "Enemy") {
+		Destroy(gameObject);
+		//Destroy(col.gameObject);
+	}
+}
+
+function OnBecameInvisible() { 
     Destroy(gameObject);
 }

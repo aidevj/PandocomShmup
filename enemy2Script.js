@@ -1,7 +1,8 @@
-﻿// Public variable that contains the speed of the enemy
-public var velocity : int = -5;
-public var amplitude : float = 1;
-public var frequency : float = .7; 
+﻿// TYPE2 ENEMY:
+//when hit, bursts into 3 smaller regular moving enemies
+
+public var velocity : int = -3;
+public var miniEnemy : GameObject;
 
 function Start() {
     var r2d = GetComponent("Rigidbody2D");
@@ -15,26 +16,26 @@ function Start() {
 
 // Update Function
 function Update(){ 
-    transform.position += amplitude * (Mathf.Sin(2 * Mathf.PI * frequency * Time.time) - Mathf.Sin(2 * Mathf.PI * frequency*(Time.time - Time.deltaTime))) * transform.up;
 
     transform.position.z = 0;
     if (transform.position.x < -8f) { Destroy(gameObject); }	//left bound
 }
 
 
-/*function OnCollisionEnter ( col : Collision ) {
-	//Destroy(gameObject);
-}*/
-
-
 function OnCollisionEnter2D(col : Collision2D) {
 
-    if (col.gameObject.tag == "Player") {
+
+    Debug.Log("enemy colliding");
+    if (col.gameObject.tag == "Player" || col.gameObject.tag == "Bullet") {
         Death();
     }
 }
 
 function Death() {
-	//to do
+	// spawn 3 minis upon death
+	for (var i = 0; i < 3; i++) {
+		Instantiate(miniEnemy, transform.position, Quaternion.Euler(Vector3(0, -153, -7)));
+	}
+
 	Destroy(gameObject);
 }
